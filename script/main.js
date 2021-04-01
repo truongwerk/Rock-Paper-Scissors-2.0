@@ -67,13 +67,39 @@ function playRound(playerChoice) {
 			result = "draw";
 		}
 	}
-	return result;
+  decideGame(result);
+	return ;
 }
 
+function decideGame(result) {
+	if (result == "win") {
+		player += 1;
+	} else if (result == "lose") {
+		computer += 1;
+	}
+	if (player == 5) {
+		playerScore.textContent = "Winner!";
+		computerScore.textContent = "loser";
+		player = 0;
+		computer = 0;
+	} else if (computer == 5) {
+		playerScore.textContent = "loser";
+		computerScore.textContent = "Winner!";
+		player = 0;
+		computer = 0;
+	} else {
+		playerScore.textContent = `${player}`;
+		computerScore.textContent = `${computer}`;
+	}
+	return player, computer;
+}
+
+/* remove choice style. */
 function removeChoice() {
 	imgs.forEach((img) => img.classList.remove("choose"));
 }
-
+let player = 0;
+let computer = 0;
 const computerRock = document.querySelector("#computerRock");
 const computerPaper = document.querySelector("#computerPaper");
 const computerScissors = document.querySelector("#computerScissors");
